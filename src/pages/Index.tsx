@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import CategoriesSection from "@/components/CategoriesSection";
-import PackagesSection from "@/components/PackagesSection";
+import DynamicCategoriesSection from "@/components/DynamicCategoriesSection";
+import DynamicPackagesSection from "@/components/DynamicPackagesSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -9,8 +9,8 @@ const Index = () => {
     <div className="min-h-screen">
       <Navigation />
       <Hero />
-      <CategoriesSection />
-      <PackagesSection />
+      <DynamicCategoriesSection />
+      <DynamicPackagesSection />
       <Footer />
     </div>
   );
