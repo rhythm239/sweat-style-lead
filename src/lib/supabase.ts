@@ -1,23 +1,9 @@
-import { createClient, type SupabaseClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js'
 
-let supabaseClient: SupabaseClient | null = null
-
-const readConfig = () => {
-  // Allow multiple sources since VITE_* envs are not available in this environment.
-  const url = (globalThis as any)?.SUPABASE_URL || (typeof localStorage !== 'undefined' ? localStorage.getItem('SUPABASE_URL') : null) || (import.meta as any)?.env?.VITE_SUPABASE_URL
-  const anonKey = (globalThis as any)?.SUPABASE_ANON_KEY || (typeof localStorage !== 'undefined' ? localStorage.getItem('SUPABASE_ANON_KEY') : null) || (import.meta as any)?.env?.VITE_SUPABASE_ANON_KEY
-  return { url, anonKey }
-}
-
-export const getSupabase = (): SupabaseClient => {
-  if (supabaseClient) return supabaseClient
-  const { url, anonKey } = readConfig()
-  if (!url || !anonKey) {
-    throw new Error('Supabase is not configured. Set SUPABASE_URL and SUPABASE_ANON_KEY in localStorage or visit /setup for instructions.')
-  }
-  supabaseClient = createClient(url, anonKey)
-  return supabaseClient
-}
+const supabase = createClient(
+  'https://tilqcyddmfapgzuvinsk.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpbHFjeWRkbWZhcGd6dXZpbnNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc5Mzg5NjMsImV4cCI6MjA3MzUxNDk2M30.WYldkeHHTe2gq71X9Z0INwC1pQ2VHfQiNc9yUkPqyso'
+)
 
 // Database types
 export interface Category {
@@ -56,7 +42,7 @@ export interface Package {
 // API functions
 export const categoryApi = {
   getAll: async (): Promise<Category[]> => {
-    const { data, error } = await getSupabase()
+    const { data, error } = await supabase
       .from('categories')
       .select('*')
       .order('name')
@@ -66,11 +52,11 @@ export const categoryApi = {
   },
 
   getBySlug: async (slug: string): Promise<Category | null> => {
-    const { data, error } = await getSupabase()
+    const { data, error } = await supabase
       .from('categories')
       .select('*')
       .eq('slug', slug)
-      .single()
+      .maybeSingle()
     
     if (error) return null
     return data
@@ -79,7 +65,7 @@ export const categoryApi = {
 
 export const productApi = {
   getAll: async (): Promise<Product[]> => {
-    const { data, error } = await getSupabase()
+    const { data, error } = await supabase
       .from('products')
       .select(`
         *,
@@ -92,7 +78,7 @@ export const productApi = {
   },
 
   getByCategory: async (categoryId: string): Promise<Product[]> => {
-    const { data, error } = await getSupabase()
+    const { data, error } = await supabase
       .from('products')
       .select(`
         *,
@@ -106,7 +92,7 @@ export const productApi = {
   },
 
   getFeatured: async (): Promise<Product[]> => {
-    const { data, error } = await getSupabase()
+    const { data, error } = await supabase
       .from('products')
       .select(`
         *,
@@ -120,14 +106,14 @@ export const productApi = {
   },
 
   getById: async (id: string): Promise<Product | null> => {
-    const { data, error } = await getSupabase()
+    const { data, error } = await supabase
       .from('products')
       .select(`
         *,
         category:categories(*)
       `)
       .eq('id', id)
-      .single()
+      .maybeSingle()
     
     if (error) return null
     return data
@@ -136,7 +122,7 @@ export const productApi = {
 
 export const packageApi = {
   getAll: async (): Promise<Package[]> => {
-    const { data, error } = await getSupabase()
+    const { data, error } = await supabase
       .from('packages')
       .select('*')
       .order('name')
@@ -146,7 +132,7 @@ export const packageApi = {
   },
 
   getFeatured: async (): Promise<Package[]> => {
-    const { data, error } = await getSupabase()
+    const { data, error } = await supabase
       .from('packages')
       .select('*')
       .eq('featured', true)
