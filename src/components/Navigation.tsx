@@ -1,15 +1,16 @@
 import { Button } from "@/components/ui/enhanced-button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const categories = [
-    { name: "Strength", href: "/strength" },
-    { name: "Cardio", href: "/cardio" },
-    { name: "Benches & Racks", href: "/benches-racks" },
-    { name: "Accessories", href: "/accessories" },
+    { name: "Strength", to: "/category/strength" },
+    { name: "Cardio", to: "/category/cardio" },
+    { name: "Benches & Racks", to: "/category/benches-and-racks" },
+    { name: "Accessories", to: "/category/accessories" },
   ];
 
   return (
@@ -18,28 +19,28 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold gradient-text">
+            <Link to="/" className="text-2xl font-bold gradient-text">
               FitEquip Pro
-            </h1>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {categories.map((category) => (
-              <a
+              <Link
                 key={category.name}
-                href={category.href}
+                to={category.to}
                 className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
               >
                 {category.name}
-              </a>
+              </Link>
             ))}
-            <a
-              href="/packages"
+            <Link
+              to="/#packages"
               className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
             >
               Packages
-            </a>
+            </Link>
           </div>
 
           {/* WhatsApp CTA */}
@@ -69,20 +70,20 @@ const Navigation = () => {
           <div className="md:hidden border-t border-border/20">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {categories.map((category) => (
-                <a
+                <Link
                   key={category.name}
-                  href={category.href}
+                  to={category.to}
                   className="block px-3 py-2 text-foreground hover:text-primary transition-colors duration-200"
                 >
                   {category.name}
-                </a>
+                </Link>
               ))}
-              <a
-                href="/packages"
+              <Link
+                to="/#packages"
                 className="block px-3 py-2 text-foreground hover:text-primary transition-colors duration-200"
               >
                 Packages
-              </a>
+              </Link>
               <div className="px-3 pt-2">
                 <Button 
                   variant="whatsapp" 

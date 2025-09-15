@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="bg-card/50 border-t border-border/20 py-12">
@@ -22,10 +23,10 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Categories</h4>
             <ul className="space-y-2">
-              <li><a href="/strength" className="text-muted-foreground hover:text-primary transition-colors">Strength Equipment</a></li>
-              <li><a href="/cardio" className="text-muted-foreground hover:text-primary transition-colors">Cardio Machines</a></li>
-              <li><a href="/benches-racks" className="text-muted-foreground hover:text-primary transition-colors">Benches & Racks</a></li>
-              <li><a href="/accessories" className="text-muted-foreground hover:text-primary transition-colors">Accessories</a></li>
+              <li><Link to="/category/strength" className="text-muted-foreground hover:text-primary transition-colors">Strength Equipment</Link></li>
+              <li><Link to="/category/cardio" className="text-muted-foreground hover:text-primary transition-colors">Cardio Machines</Link></li>
+              <li><Link to="/category/benches-and-racks" className="text-muted-foreground hover:text-primary transition-colors">Benches & Racks</Link></li>
+              <li><Link to="/category/accessories" className="text-muted-foreground hover:text-primary transition-colors">Accessories</Link></li>
             </ul>
           </div>
 
@@ -33,7 +34,7 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Services</h4>
             <ul className="space-y-2">
-              <li><a href="/packages" className="text-muted-foreground hover:text-primary transition-colors">Gym Packages</a></li>
+              <li><Link to="/#packages" className="text-muted-foreground hover:text-primary transition-colors">Gym Packages</Link></li>
               <li><span className="text-muted-foreground">Custom Design</span></li>
               <li><span className="text-muted-foreground">Installation</span></li>
               <li><span className="text-muted-foreground">Maintenance</span></li>
