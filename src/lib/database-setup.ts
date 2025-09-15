@@ -1,4 +1,4 @@
-import { supabase } from './supabase'
+
 
 // This file contains the SQL commands to set up your database tables
 // Run these in your Supabase SQL editor

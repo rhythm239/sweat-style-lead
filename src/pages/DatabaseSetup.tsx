@@ -1,10 +1,21 @@
 import { Button } from "@/components/ui/enhanced-button";
 import { Database, Package, Settings, Users } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { databaseSchema, sampleProducts } from "@/lib/database-setup";
 
 const DatabaseSetup = () => {
   const [setupStep, setSetupStep] = useState(0);
+
+  const [supabaseUrl, setSupabaseUrl] = useState<string>("")
+  const [supabaseAnonKey, setSupabaseAnonKey] = useState<string>("")
+  const [saved, setSaved] = useState(false)
+
+  useEffect(() => {
+    const url = typeof localStorage !== 'undefined' ? localStorage.getItem('SUPABASE_URL') : ''
+    const key = typeof localStorage !== 'undefined' ? localStorage.getItem('SUPABASE_ANON_KEY') : ''
+    if (url) setSupabaseUrl(url)
+    if (key) setSupabaseAnonKey(key)
+  }, [])
 
   const steps = [
     {
@@ -82,6 +93,44 @@ const DatabaseSetup = () => {
               </div>
             );
           })}
+        </div>
+
+        {/* Configure Supabase Keys */}
+        <div className="mt-12">
+          <div className="glass-card p-8">
+            <h2 className="text-2xl font-bold mb-2">Configure Supabase Connection</h2>
+            <p className="text-muted-foreground mb-6">Enter your Supabase URL and Anon Key. These are safe public keys and will be stored locally in your browser.</p>
+            <div className="grid gap-4">
+              <input
+                className="w-full px-4 py-2 rounded-md bg-card/50 border border-border/50 outline-none"
+                placeholder="https://YOUR-PROJECT.supabase.co"
+                value={supabaseUrl}
+                onChange={(e) => setSupabaseUrl(e.target.value)}
+              />
+              <input
+                className="w-full px-4 py-2 rounded-md bg-card/50 border border-border/50 outline-none"
+                placeholder="Supabase anon public key"
+                value={supabaseAnonKey}
+                onChange={(e) => setSupabaseAnonKey(e.target.value)}
+              />
+              <div className="flex gap-3">
+                <Button
+                  variant="glass"
+                  onClick={() => {
+                    if (supabaseUrl) localStorage.setItem('SUPABASE_URL', supabaseUrl);
+                    if (supabaseAnonKey) localStorage.setItem('SUPABASE_ANON_KEY', supabaseAnonKey);
+                    setSaved(true);
+                  }}
+                >
+                  Save Keys
+                </Button>
+                <Button variant="hero" onClick={() => window.location.href = '/'}>
+                  Test Connection
+                </Button>
+              </div>
+              {saved && <p className="text-sm text-green-500">Saved! Reload the homepage to load data.</p>}
+            </div>
+          </div>
         </div>
 
         <div className="mt-12 text-center">

@@ -1,9 +1,23 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+let supabaseClient: SupabaseClient | null = null
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+const readConfig = () => {
+  // Allow multiple sources since VITE_* envs are not available in this environment.
+  const url = (globalThis as any)?.SUPABASE_URL || (typeof localStorage !== 'undefined' ? localStorage.getItem('SUPABASE_URL') : null) || (import.meta as any)?.env?.VITE_SUPABASE_URL
+  const anonKey = (globalThis as any)?.SUPABASE_ANON_KEY || (typeof localStorage !== 'undefined' ? localStorage.getItem('SUPABASE_ANON_KEY') : null) || (import.meta as any)?.env?.VITE_SUPABASE_ANON_KEY
+  return { url, anonKey }
+}
+
+export const getSupabase = (): SupabaseClient => {
+  if (supabaseClient) return supabaseClient
+  const { url, anonKey } = readConfig()
+  if (!url || !anonKey) {
+    throw new Error('Supabase is not configured. Set SUPABASE_URL and SUPABASE_ANON_KEY in localStorage or visit /setup for instructions.')
+  }
+  supabaseClient = createClient(url, anonKey)
+  return supabaseClient
+}
 
 // Database types
 export interface Category {
@@ -14,6 +28,7 @@ export interface Category {
   image_url?: string
   created_at: string
 }
+
 
 export interface Product {
   id: string
@@ -41,7 +56,7 @@ export interface Package {
 // API functions
 export const categoryApi = {
   getAll: async (): Promise<Category[]> => {
-    const { data, error } = await supabase
+    const { data, error } = await getSupabase()
       .from('categories')
       .select('*')
       .order('name')
@@ -51,7 +66,7 @@ export const categoryApi = {
   },
 
   getBySlug: async (slug: string): Promise<Category | null> => {
-    const { data, error } = await supabase
+    const { data, error } = await getSupabase()
       .from('categories')
       .select('*')
       .eq('slug', slug)
@@ -64,7 +79,7 @@ export const categoryApi = {
 
 export const productApi = {
   getAll: async (): Promise<Product[]> => {
-    const { data, error } = await supabase
+    const { data, error } = await getSupabase()
       .from('products')
       .select(`
         *,
@@ -77,7 +92,7 @@ export const productApi = {
   },
 
   getByCategory: async (categoryId: string): Promise<Product[]> => {
-    const { data, error } = await supabase
+    const { data, error } = await getSupabase()
       .from('products')
       .select(`
         *,
@@ -91,7 +106,7 @@ export const productApi = {
   },
 
   getFeatured: async (): Promise<Product[]> => {
-    const { data, error } = await supabase
+    const { data, error } = await getSupabase()
       .from('products')
       .select(`
         *,
@@ -105,7 +120,7 @@ export const productApi = {
   },
 
   getById: async (id: string): Promise<Product | null> => {
-    const { data, error } = await supabase
+    const { data, error } = await getSupabase()
       .from('products')
       .select(`
         *,
@@ -121,7 +136,7 @@ export const productApi = {
 
 export const packageApi = {
   getAll: async (): Promise<Package[]> => {
-    const { data, error } = await supabase
+    const { data, error } = await getSupabase()
       .from('packages')
       .select('*')
       .order('name')
@@ -131,7 +146,7 @@ export const packageApi = {
   },
 
   getFeatured: async (): Promise<Package[]> => {
-    const { data, error } = await supabase
+    const { data, error } = await getSupabase()
       .from('packages')
       .select('*')
       .eq('featured', true)
