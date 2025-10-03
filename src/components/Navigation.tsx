@@ -20,7 +20,7 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="text-2xl font-bold gradient-text">
-              FitEquip Pro
+              Bodyforce
             </Link>
           </div>
 

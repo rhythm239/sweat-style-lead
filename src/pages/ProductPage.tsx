@@ -184,7 +184,7 @@ const ProductPage = () => {
 
             {/* Additional Info */}
             <div className="glass-card p-6 border border-primary/20">
-              <h3 className="font-semibold mb-2 text-primary">Why Choose FitEquip Pro?</h3>
+              <h3 className="font-semibold mb-2 text-primary">Why Choose Bodyforce?</h3>
               <ul className="text-sm text-muted-foreground space-y-1">
                 <li>• Professional installation included</li>
                 <li>• 2-year warranty on all equipment</li>
