@@ -14,7 +14,107 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          name: string
+          slug: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name: string
+          slug: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name?: string
+          slug?: string
+        }
+        Relationships: []
+      }
+      packages: {
+        Row: {
+          created_at: string
+          description: string | null
+          equipment_list: string[] | null
+          featured: boolean | null
+          id: string
+          image_url: string | null
+          name: string
+          price: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          equipment_list?: string[] | null
+          featured?: boolean | null
+          id?: string
+          image_url?: string | null
+          name: string
+          price: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          equipment_list?: string[] | null
+          featured?: boolean | null
+          id?: string
+          image_url?: string | null
+          name?: string
+          price?: string
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          category_id: string | null
+          created_at: string
+          description: string | null
+          featured: boolean | null
+          id: string
+          image_urls: string[] | null
+          name: string
+          specifications: string[] | null
+        }
+        Insert: {
+          category_id?: string | null
+          created_at?: string
+          description?: string | null
+          featured?: boolean | null
+          id?: string
+          image_urls?: string[] | null
+          name: string
+          specifications?: string[] | null
+        }
+        Update: {
+          category_id?: string | null
+          created_at?: string
+          description?: string | null
+          featured?: boolean | null
+          id?: string
+          image_urls?: string[] | null
+          name?: string
+          specifications?: string[] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "products_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
