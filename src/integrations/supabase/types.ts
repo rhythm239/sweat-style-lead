@@ -47,6 +47,7 @@ export type Database = {
           description: string | null
           equipment_list: string[] | null
           featured: boolean | null
+          gallery_images: string[] | null
           id: string
           image_url: string | null
           name: string
@@ -57,6 +58,7 @@ export type Database = {
           description?: string | null
           equipment_list?: string[] | null
           featured?: boolean | null
+          gallery_images?: string[] | null
           id?: string
           image_url?: string | null
           name: string
@@ -67,6 +69,7 @@ export type Database = {
           description?: string | null
           equipment_list?: string[] | null
           featured?: boolean | null
+          gallery_images?: string[] | null
           id?: string
           image_url?: string | null
           name?: string

@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/enhanced-button";
 import { Check } from "lucide-react";
+import { useState } from "react";
+import PackageGalleryDialog from "./PackageGalleryDialog";
 
 interface PackageCardProps {
   name: string;
@@ -7,13 +9,14 @@ interface PackageCardProps {
   equipment: string[];
   imageUrl: string;
   featured?: boolean;
+  galleryImages?: string[];
 }
 
-const PackageCard = ({ name, price, equipment, imageUrl, featured = false }: PackageCardProps) => {
-  const whatsappMessage = `Hi! I'm interested in the ${name} package (${price}). Can you provide more details?`;
-  const whatsappUrl = `https://wa.me/911234567890?text=${encodeURIComponent(whatsappMessage)}`;
+const PackageCard = ({ name, price, equipment, imageUrl, featured = false, galleryImages = [] }: PackageCardProps) => {
+  const [showGallery, setShowGallery] = useState(false);
 
   return (
+    <>
     <div className={`glass-card p-8 relative ${featured ? 'border-primary/50 scale-105' : ''} hover:scale-105 transition-all duration-300`}>
       {featured && (
         <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -43,13 +46,21 @@ const PackageCard = ({ name, price, equipment, imageUrl, featured = false }: Pac
       </div>
 
       <Button 
-        variant="whatsapp" 
+        variant="default" 
         className="w-full"
-        onClick={() => window.open(whatsappUrl, '_blank')}
+        onClick={() => setShowGallery(true)}
       >
-        Get This Package
+        View Package
       </Button>
     </div>
+
+    <PackageGalleryDialog 
+      open={showGallery}
+      onOpenChange={setShowGallery}
+      packageName={name}
+      images={galleryImages}
+    />
+    </>
   );
 };
 

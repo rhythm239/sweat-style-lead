@@ -35,6 +35,7 @@ export interface Package {
   description: string
   equipment_list: string[]
   image_url?: string
+  gallery_images?: string[]
   featured: boolean
   created_at: string
 }

@@ -76,6 +76,7 @@ const DynamicPackagesSection = () => {
                 equipment={pkg.equipment_list}
                 imageUrl={pkg.image_url || 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop'}
                 featured={pkg.featured}
+                galleryImages={pkg.gallery_images}
               />
             </div>
           ))}
