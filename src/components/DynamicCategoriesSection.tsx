@@ -70,7 +70,7 @@ const CategoriesSection = () => {
               title={category.name}
               description={category.description || ''}
               imageUrl={category.image_url || 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop'}
-              href={`/category/${category.slug}`}
+              href={category.slug === 'packages' ? '/#packages' : `/category/${category.slug}` }
               delay={index * 100}
             />
           ))}

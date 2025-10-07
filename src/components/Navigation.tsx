@@ -9,7 +9,7 @@ const Navigation = () => {
   const categories = [
     { name: "Strength", to: "/category/strength" },
     { name: "Cardio", to: "/category/cardio" },
-    { name: "Benches & Racks", to: "/category/benches-and-racks" },
+    { name: "Benches & Racks", to: "/category/benches-racks" },
     { name: "Accessories", to: "/category/accessories" },
   ];
 
@@ -35,12 +35,12 @@ const Navigation = () => {
                 {category.name}
               </Link>
             ))}
-            <Link
-              to="/#packages"
+            <a
+              href="/#packages"
               className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
             >
               Packages
-            </Link>
+            </a>
           </div>
 
           {/* WhatsApp CTA */}
@@ -73,17 +73,19 @@ const Navigation = () => {
                 <Link
                   key={category.name}
                   to={category.to}
+                  onClick={() => setIsMenuOpen(false)}
                   className="block px-3 py-2 text-foreground hover:text-primary transition-colors duration-200"
                 >
                   {category.name}
                 </Link>
               ))}
-              <Link
-                to="/#packages"
+              <a
+                href="/#packages"
+                onClick={() => setIsMenuOpen(false)}
                 className="block px-3 py-2 text-foreground hover:text-primary transition-colors duration-200"
               >
                 Packages
-              </Link>
+              </a>
               <div className="px-3 pt-2">
                 <Button 
                   variant="whatsapp" 
