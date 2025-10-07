@@ -71,12 +71,12 @@ const DynamicPackagesSection = () => {
           {packages.map((pkg, index) => (
             <div key={pkg.id} className="animate-fade-in" style={{ animationDelay: `${index * 200}ms` }}>
               <PackageCard
+                id={pkg.id}
                 name={pkg.name}
                 price={pkg.price}
                 equipment={pkg.equipment_list}
                 imageUrl={pkg.image_url || 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop'}
                 featured={pkg.featured}
-                galleryImages={pkg.gallery_images}
               />
             </div>
           ))}

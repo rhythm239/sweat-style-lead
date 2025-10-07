@@ -3,6 +3,7 @@ import PackageCard from "./PackageCard";
 const PackagesSection = () => {
   const packages = [
     {
+      id: "starter-pkg-1",
       name: "Starter Package",
       price: "₹2,50,000",
       equipment: [
@@ -15,6 +16,7 @@ const PackagesSection = () => {
       imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop"
     },
     {
+      id: "professional-pkg-2",
       name: "Professional Package", 
       price: "₹6,50,000",
       equipment: [
@@ -30,6 +32,7 @@ const PackagesSection = () => {
       featured: true
     },
     {
+      id: "elite-pkg-3",
       name: "Elite Package",
       price: "₹12,00,000",
       equipment: [

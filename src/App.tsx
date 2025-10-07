@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import CategoryPage from "./pages/CategoryPage";
 import ProductPage from "./pages/ProductPage";
+import PackageGalleryPage from "./pages/PackageGalleryPage";
 import DatabaseSetup from "./pages/DatabaseSetup";
 import NotFound from "./pages/NotFound";
 
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/category/:slug" element={<CategoryPage />} />
           <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/package/:id" element={<PackageGalleryPage />} />
           <Route path="/setup" element={<DatabaseSetup />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

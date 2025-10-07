@@ -1,22 +1,20 @@
 import { Button } from "@/components/ui/enhanced-button";
 import { Check } from "lucide-react";
-import { useState } from "react";
-import PackageGalleryDialog from "./PackageGalleryDialog";
+import { useNavigate } from "react-router-dom";
 
 interface PackageCardProps {
+  id: string;
   name: string;
   price: string;
   equipment: string[];
   imageUrl: string;
   featured?: boolean;
-  galleryImages?: string[];
 }
 
-const PackageCard = ({ name, price, equipment, imageUrl, featured = false, galleryImages = [] }: PackageCardProps) => {
-  const [showGallery, setShowGallery] = useState(false);
+const PackageCard = ({ id, name, price, equipment, imageUrl, featured = false }: PackageCardProps) => {
+  const navigate = useNavigate();
 
   return (
-    <>
     <div className={`glass-card p-8 relative ${featured ? 'border-primary/50 scale-105' : ''} hover:scale-105 transition-all duration-300`}>
       {featured && (
         <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -48,19 +46,11 @@ const PackageCard = ({ name, price, equipment, imageUrl, featured = false, galle
       <Button 
         variant="default" 
         className="w-full"
-        onClick={() => setShowGallery(true)}
+        onClick={() => navigate(`/package/${id}`)}
       >
         View Package
       </Button>
     </div>
-
-    <PackageGalleryDialog 
-      open={showGallery}
-      onOpenChange={setShowGallery}
-      packageName={name}
-      images={galleryImages}
-    />
-    </>
   );
 };
 
