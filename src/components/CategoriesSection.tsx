@@ -3,16 +3,10 @@ import CategoryCard from "./CategoryCard";
 const CategoriesSection = () => {
   const categories = [
     {
-      title: "Accessories",
-      description: "Complete your gym with resistance bands, kettlebells, and training accessories.",
-      imageUrl: "https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=400&h=300&fit=crop",
-      href: "/accessories"
-    },
-    {
-      title: "Benches & Racks",
-      description: "Professional-grade benches, squat racks, and multi-station systems.",
-      imageUrl: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&h=300&fit=crop",
-      href: "/benches-racks"
+      title: "Strength",
+      description: "Power racks, barbells, dumbbells, and plate-loaded machines for serious strength training.",
+      imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+      href: "/strength"
     },
     {
       title: "Cardio",
@@ -21,10 +15,16 @@ const CategoriesSection = () => {
       href: "/cardio"
     },
     {
-      title: "Strength",
-      description: "Power racks, barbells, dumbbells, and plate-loaded machines for serious strength training.",
-      imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
-      href: "/strength"
+      title: "Benches & Racks",
+      description: "Professional-grade benches, squat racks, and multi-station systems.",
+      imageUrl: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&h=300&fit=crop",
+      href: "/benches-racks"
+    },
+    {
+      title: "Accessories",
+      description: "Complete your gym with resistance bands, kettlebells, and training accessories.",
+      imageUrl: "https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=400&h=300&fit=crop",
+      href: "/accessories"
     }
   ];
 
