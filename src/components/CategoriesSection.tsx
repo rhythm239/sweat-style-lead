@@ -3,16 +3,10 @@ import CategoryCard from "./CategoryCard";
 const CategoriesSection = () => {
   const categories = [
     {
-      title: "Strength",
-      description: "Power racks, barbells, dumbbells, and plate-loaded machines for serious strength training.",
-      imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
-      href: "/strength"
-    },
-    {
-      title: "Cardio",
-      description: "Treadmills, ellipticals, bikes, and rowing machines for cardiovascular fitness.",
-      imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
-      href: "/cardio"
+      title: "Accessories",
+      description: "Complete your gym with resistance bands, kettlebells, and training accessories.",
+      imageUrl: "https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=400&h=300&fit=crop",
+      href: "/accessories"
     },
     {
       title: "Benches & Racks",
@@ -21,10 +15,16 @@ const CategoriesSection = () => {
       href: "/benches-racks"
     },
     {
-      title: "Accessories",
-      description: "Complete your gym with resistance bands, kettlebells, and training accessories.",
-      imageUrl: "https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=400&h=300&fit=crop",
-      href: "/accessories"
+      title: "Cardio",
+      description: "Treadmills, ellipticals, bikes, and rowing machines for cardiovascular fitness.",
+      imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+      href: "/cardio"
+    },
+    {
+      title: "Strength",
+      description: "Power racks, barbells, dumbbells, and plate-loaded machines for serious strength training.",
+      imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+      href: "/strength"
     }
   ];
 
