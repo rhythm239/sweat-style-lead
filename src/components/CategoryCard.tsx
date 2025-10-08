@@ -11,7 +11,7 @@ interface CategoryCardProps {
 const CategoryCard = ({ title, description, imageUrl, href, delay = 0 }: CategoryCardProps) => {
   return (
     <div 
-      className="group glass-card p-6 text-center hover:scale-105 transition-all duration-500 animate-fade-in"
+      className="group glass-card p-6 text-center hover:scale-105 transition-all duration-500 animate-fade-in flex flex-col h-full"
       style={{ animationDelay: `${delay}ms` }}
     >
       <div className="relative overflow-hidden rounded-lg mb-6">
@@ -27,13 +27,13 @@ const CategoryCard = ({ title, description, imageUrl, href, delay = 0 }: Categor
         {title}
       </h3>
       
-      <p className="text-muted-foreground mb-6 leading-relaxed">
+      <p className="text-muted-foreground mb-6 leading-relaxed flex-grow">
         {description}
       </p>
       
       <Button 
         variant="glass" 
-        className="w-full group-hover:border-primary/50"
+        className="w-full group-hover:border-primary/50 mt-auto"
         onClick={() => window.location.href = href}
       >
         Explore {title}
